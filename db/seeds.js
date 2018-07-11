@@ -4,7 +4,7 @@ const { dbURI } = require('../config/environment');
 const Taco = require('../models/taco');
 
 mongoose.connect(dbURI, (err, db) => {
-  // db.dropDatabase();
+  db.dropDatabase();
 
   Taco.create([{
     condiment: 'Salsa',
@@ -31,7 +31,7 @@ mongoose.connect(dbURI, (err, db) => {
     base_layer: 'Shrimp',
     shell: 'Soft Flour Tortilla'
   }])
-    .then(tacos => console.log(`${tacos.length} delicious tacos created!`))
+    .then(tacos => console.log(`${tacos.length} tasty tacos created!`))
     .catch(err => console.log(err))
     .finally(() => mongoose.connection.close());
 });

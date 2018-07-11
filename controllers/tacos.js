@@ -8,6 +8,14 @@ function indexRoute(req, res, next) {
     .catch(next);
 }
 
+function createRoute(req,res,next) {
+  Taco
+    .create(req.body)
+    .then(taco => res.status(201).json(taco))
+    .catch(next);
+}
+
 module.exports = {
-  index: indexRoute
+  index: indexRoute,
+  create: createRoute
 };
