@@ -23,8 +23,21 @@ function showRoute(req, res, next) {
     .catch(next);
 }
 
+function deleteRoute(req, res, next) {
+  Taco
+    .findById(req.params.id)
+    .exec()
+    .then(taco => {
+      if(!taco) return res.sendStatus(404);
+      return taco.remove();
+    })
+    .then(() => res.sendStatus(204))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
   create: createRoute,
-  show: showRoute
+  show: showRoute,
+  delete: deleteRoute
 };

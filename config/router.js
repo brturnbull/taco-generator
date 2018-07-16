@@ -6,6 +6,7 @@ router.route('/tacos')
   .post(tacos.create);
 
 router.route('/tacos/:id')
-  .get(tacos.show);
+  .get(tacos.show)
+  .delete(tacos.delete);
 
 module.exports = router;
