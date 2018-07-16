@@ -15,7 +15,16 @@ function createRoute(req,res,next) {
     .catch(next);
 }
 
+function showRoute(req, res, next) {
+  Taco
+    .findById(req.params.id)
+    .exec()
+    .then(taco => res.json(taco))
+    .catch(next);
+}
+
 module.exports = {
   index: indexRoute,
-  create: createRoute
+  create: createRoute,
+  show: showRoute
 };

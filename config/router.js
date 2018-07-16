@@ -5,4 +5,7 @@ router.route('/tacos')
   .get(tacos.index)
   .post(tacos.create);
 
+router.route('/tacos/:id')
+  .get(tacos.show);
+
 module.exports = router;
