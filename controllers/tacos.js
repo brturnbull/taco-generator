@@ -23,6 +23,19 @@ function showRoute(req, res, next) {
     .catch(next);
 }
 
+function updateRoute(req, res, next) {
+  Taco
+    .findById(req.params.id)
+    .exec()
+    .then(taco => {
+      if(!taco) return res.sendStatus(404);
+      Object.assign(taco, req.body);
+      return taco.save();
+    })
+    .then(taco => res.json(taco))
+    .catch(next);
+}
+
 function deleteRoute(req, res, next) {
   Taco
     .findById(req.params.id)
@@ -39,5 +52,6 @@ module.exports = {
   index: indexRoute,
   create: createRoute,
   show: showRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  update: updateRoute
 };

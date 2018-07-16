@@ -7,6 +7,6 @@ router.route('/tacos')
 
 router.route('/tacos/:id')
   .get(tacos.show)
-  .delete(tacos.delete);
-
+  .delete(tacos.delete)
+  .put(tacos.update);
 module.exports = router;
