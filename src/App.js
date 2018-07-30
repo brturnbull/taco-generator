@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
+
 import './App.css';
 import 'bulma/css/bulma.css';
+
+import Home from './components/tacos/Home';
+import RandomTaco from './components/tacos/Random';
+import Index from './components/tacos/Index';
 
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <img src="https://media.giphy.com/media/3o6ZtkmiFtpBvii6uQ/giphy.gif" data-reactid=".0.0" alt="dancing-taco" />
-        <br />
-        <button className="button">Old Tacos</button>
-        <button className="button">Random Taco</button>
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/random" component={RandomTaco} />
+          <Route exact path="/saved" component={Index} />
+        </Switch>
+      </Router>
     );
   }
 }
