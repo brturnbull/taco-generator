@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import './App.css';
-import 'bulma/css/bulma.css';
+// import 'bulma/css/bulma.css';
 
 import Home from './components/tacos/Home';
 import RandomTaco from './components/tacos/Random';

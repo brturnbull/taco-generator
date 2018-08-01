@@ -1,15 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 
+const showdown = require('showdown');
+const converter = new showdown.Converter();
+
 class RandomTaco extends React.Component {
 
   state = {
-    data: {}
+    data: {
+      name: '',
+      recipe: ''
+    }
   }
 
 
   handleGenerate = () => {
-    console.log('working!');
     axios
       .get('https://cors-anywhere.herokuapp.com/https://taco-randomizer.herokuapp.com/random?full-taco=true')
       .then(res => this.setState({ data: res.data}));
@@ -21,7 +26,9 @@ class RandomTaco extends React.Component {
         <h3>Random Taco</h3>
         <button onClick={this.handleGenerate}>Generate!</button>
         <hr />
-        <p>{this.state.data.name}</p>
+        <h2>{ this.state.data.name }</h2>
+        <p>{ console.log(this.state) }</p>
+        <p>{ converter.makeHtml(this.state.data.recipe) }</p>
       </div>
     );
   }
