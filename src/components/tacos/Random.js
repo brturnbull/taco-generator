@@ -1,6 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+// converting the JSON recipe response from markdown to JSX for rendering
 import Markdown from 'markdown-to-jsx';
+
+// var showdown  = require('showdown'),
+//   converter = new showdown.Converter();
 
 class RandomTaco extends React.Component {
 
@@ -22,8 +26,8 @@ class RandomTaco extends React.Component {
         <h3>Random Taco</h3>
         <button onClick={this.handleGenerate}>Generate!</button>
         <hr />
-        <p>{ console.log(this.state) }</p>
-        <p><Markdown>{ (this.state.data.recipe) }</Markdown></p>
+        {/* {console.log(converter.makeHtml(this.state.data.recipe))} */}
+        <Markdown>{ (this.state.data.recipe) }</Markdown>
       </div>
     );
   }
