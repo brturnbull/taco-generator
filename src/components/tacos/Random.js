@@ -1,16 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-
-const showdown = require('showdown');
-const converter = new showdown.Converter();
+import Markdown from 'markdown-to-jsx';
 
 class RandomTaco extends React.Component {
 
   state = {
     data: {
-      name: '',
-      recipe: ''
-    }
+      recipe: ''}
   }
 
 
@@ -26,9 +22,8 @@ class RandomTaco extends React.Component {
         <h3>Random Taco</h3>
         <button onClick={this.handleGenerate}>Generate!</button>
         <hr />
-        <h2>{ this.state.data.name }</h2>
         <p>{ console.log(this.state) }</p>
-        <p>{ converter.makeHtml(this.state.data.recipe) }</p>
+        <p><Markdown>{ (this.state.data.recipe) }</Markdown></p>
       </div>
     );
   }
