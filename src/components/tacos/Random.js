@@ -3,8 +3,7 @@ import axios from 'axios';
 // converting the JSON recipe response from markdown to JSX for rendering
 import Markdown from 'markdown-to-jsx';
 
-// var showdown  = require('showdown'),
-//   converter = new showdown.Converter();
+let counter = 0;
 
 class RandomTaco extends React.Component {
 
@@ -15,19 +14,35 @@ class RandomTaco extends React.Component {
 
 
   handleGenerate = () => {
+    counter ++ ;
+
+    if (counter > 0 ) {
+      document.getElementById('generate').innerHTML = 'Try again!';
+    }
+
     axios
       .get('https://cors-anywhere.herokuapp.com/https://taco-randomizer.herokuapp.com/random?full-taco=true')
       .then(res => this.setState({ data: res.data}));
+  }
+
+  handleSave = () => {
+    console.log('saved!');
+
+    axios
+      .post('/api/tacos', this.state, {
+        headers: { 'Access-Control-Allow-Origin': '*'}
+      })
+      .then(() => this.props.history.push('/tacos'));
   }
 
   render() {
     return(
       <div>
         <h3>Random Taco</h3>
-        <button onClick={this.handleGenerate}>Generate!</button>
+        <button id="generate" onClick={ this.handleGenerate }>Generate!</button>
         <hr />
-        {/* {console.log(converter.makeHtml(this.state.data.recipe))} */}
         <Markdown>{ (this.state.data.recipe) }</Markdown>
+        <button onClick={ this.handleSave }>Yum, save!</button>
       </div>
     );
   }
