@@ -9,7 +9,13 @@ class RandomTaco extends React.Component {
 
   state = {
     data: {
-      recipe: ''}
+      recipe: ''
+    },
+    condiment: '',
+    mixin: '',
+    seasoning: '',
+    base_layer: '',
+    shell: ''
   }
 
 
@@ -22,17 +28,26 @@ class RandomTaco extends React.Component {
 
     axios
       .get('https://cors-anywhere.herokuapp.com/https://taco-randomizer.herokuapp.com/random?full-taco=true')
-      .then(res => this.setState({ data: res.data}));
+      .then(res => this.setState({
+        data: {
+          recipe: res.data.recipe
+        },
+        condiment: res.data.condiment,
+        mixin: res.data.mixin,
+        seasoning: res.data.seasoning,
+        base_layer: res.data.base_layer,
+        shell: res.data.shell
+      }
+      ))
+      .then(console.log(this.state));
   }
 
   handleSave = () => {
     console.log('saved!');
 
     axios
-      .post('/api/tacos', this.state, {
-        headers: { 'Access-Control-Allow-Origin': '*'}
-      })
-      .then(() => this.props.history.push('/tacos'));
+      .post('/api/tacos', this.state )
+      .then(() => this.props.history.push('/saved'));
   }
 
   render() {
