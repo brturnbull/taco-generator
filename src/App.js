@@ -6,7 +6,7 @@ import {
   Switch
 } from 'react-router-dom';
 
-import './App.css';
+// import './App.scss';
 // import 'bulma/css/bulma.css';
 
 import Home from './components/tacos/Home';
