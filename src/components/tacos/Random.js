@@ -42,12 +42,14 @@ class RandomTaco extends React.Component {
       .then(console.log(this.state));
   }
 
-  handleSave = () => {
+  handleSave = (e) => {
     console.log('saved!');
+    e.preventDefault();
 
     axios
       .post('/api/tacos', this.state )
-      .then(() => this.props.history.push('/saved'));
+      .then(() => this.props.history.push('/saved'))
+      .catch(err => this.setState({ errors: err.response.data.errors }));
   }
 
   render() {
